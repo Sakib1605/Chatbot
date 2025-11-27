@@ -1,5 +1,5 @@
 from flask import Flask, render_template, jsonify, request
-
+import gradio as gr
 
 from src.helper import download_hugging_face_embeddings
 from langchain_pinecone import PineconeVectorStore
@@ -59,22 +59,45 @@ rag_chain = create_retrieval_chain(retriever, question_answer_chain)
 
 
 
-@app.route("/")
-def index():
-    return render_template('chat.html')
+#@app.route("/")
+#def index():
+#    return render_template('chat.html')
 
 
 
-@app.route("/get", methods=["GET", "POST"])
-def chat():
-    msg = request.form["msg"]
-    input = msg
-    print(input)
-    response = rag_chain.invoke({"input": msg})
-    print("Response : ", response["answer"])
-    return str(response["answer"])
+#@app.route("/get", methods=["GET", "POST"])
+#def chat():
+#    msg = request.form["msg"]
+#    input = msg
+#    print(input)
+#    response = rag_chain.invoke({"input": msg})
+#    print("Response : ", response["answer"])
+#    return str(response["answer"])
 
 
 
-if __name__ == '__main__':
-    app.run(host="0.0.0.0", port= 8080, debug= True)
+#if __name__ == '__main__':
+#    app.run(host="0.0.0.0", port= 8080, debug= True)
+
+# ------------------------
+# GRADIO CHAT FUNCTION
+# ------------------------
+
+def chatbot(message, history):
+    response = rag_chain.invoke({"input": message})
+    return response["answer"]
+
+
+# ------------------------
+# GRADIO UI DESIGN
+# ------------------------
+
+demo = gr.ChatInterface(
+    fn=chatbot,
+    title="Travel Assistant AI 🌍",
+    description="Ask me anything about travel, attractions, hotels, weather, immigration, flights, packing tips, and more!",
+    theme="soft",
+)
+
+# Launch Gradio
+demo.launch()
