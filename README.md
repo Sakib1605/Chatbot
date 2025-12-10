@@ -22,9 +22,11 @@ It combines semantic search, LLM reasoning, and a simple Flask/Gradio frontend t
 
 - 💬 Gradio chatbot UI
 
+
+![Uploading Screenshot 2025-12-01 at 5.58.40 PM.png…]()
+
 ### 🧱 1. Technical Architecture
 The system combines classical web development (Flask) with modern AI components (LangChain, Pinecone, LLMs). The idea is simple: ingest a PDF, convert it into searchable vectors, retrieve the most relevant text for each query, and generate a clean answer using an LLM.
-
 - The system starts with a curated Travel PDF dataset, which is loaded and cleaned to extract raw text.
 - A text splitter divides the PDF text into small, meaningful chunks that preserve context and improve retrieval accuracy.
 - These chunks are transformed into dense numerical vectors using HuggingFace Sentence Transformer embeddings, enabling semantic understanding.
