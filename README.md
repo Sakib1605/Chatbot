@@ -22,8 +22,8 @@ It combines semantic search, LLM reasoning, and a simple Flask/Gradio frontend t
 
 - 💬 Gradio chatbot UI
 
+<img width="1264" height="709" alt="Screenshot 2025-12-01 at 5 58 40 PM" src="https://github.com/user-attachments/assets/2e40a099-10c1-431a-997d-b1acf29e57e7" />
 
-![Uploading Screenshot 2025-12-01 at 5.58.40 PM.png…]()
 
 ### 🧱 1. Technical Architecture
 The system combines classical web development (Flask) with modern AI components (LangChain, Pinecone, LLMs). The idea is simple: ingest a PDF, convert it into searchable vectors, retrieve the most relevant text for each query, and generate a clean answer using an LLM.
